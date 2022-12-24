@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<center><h1>Products</h1></center>
+{% include 'space.html' %}
+<table>
+    <tr>
+        <form action="/shop" method="GET">
+            <td>
+                <label for="itemCategory">Search By Category</label>
+                <select name="itemCategory">
+                    {% for category in categories %}
+                        {% if categorySearched == category.id %}
+                        <option value="{{ category.id }}" selected>{{ category.name }}</option>
+                        {% else %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <button type="submit">Search</button>
+            </td>
+        </form>
+    </tr>
+</table>
+{% include 'cards.html' %}
+
+{% endblock %}

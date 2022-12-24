@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<h1>Your Cart</h1>
+{% if productsList %}
+<button><a href="/emptyCart">EMPTY YOUR SHOPPING CART</a></button>
+<table style="width: 100%">
+    <tr>
+        <th><center>Product Image</center></th>
+        <th><center>Product Name</center></th>
+        <th><center>Description</center></th>
+        <th><center>Price</center></th>
+    </tr>
+    {% for product in productsList %}
+    <tr>
+        <td><center><img src="{{product.imageSrc}}" height="100px" width="50px"></center></td>
+        <td><center>{{ product.name }}</center></td>
+        <td><center>{{ product.description }}</center></td>
+        <td><center>{{ product.price }}</center></td>
+    </tr>
+    {% endfor %}
+</table>
+<h1>Select your delivery location</h1>
+<button><a href="/addDeliveryLocation">Add A New Location</a></button>
+{% if locationsList %}
+    <form action="/completeOrder" method="post">
+        <label for="location">Select your delivery location</label>
+        <select name="location">
+            {% for location in locationsList %}
+            <option value="{{ location.id }}">{{ location.name }} ({{location.street}}, {{location.streetNr}}, {{location.city}})</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Complete Your Order</button>
+    </form>
+{% endif %}
+{% else %}
+    <a href="/shop">You don't have any products in the cart! Please consider adding some before checking out !</a>
+{% endif %}
+{% endblock %}

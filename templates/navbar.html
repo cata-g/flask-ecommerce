@@ -1,0 +1,11 @@
+<table style = "width: 100%;">
+  <tr>
+    <th><a href="/shop">Home</a></th>
+    <th><a href="/profile">Profile</a></th>
+    <th><a href="/cart">Cart</a></th>
+    {% if account['role'] == 'admin' %}
+    <th><a href="/dashboard">Admin Dashboard</a></th>
+    {% endif %}
+    <th><a href="/logout">Logout</a></th>
+  </tr>
+</table>

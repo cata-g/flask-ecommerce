@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<form action="/create-item" method="post" enctype="multipart/form-data">
+    <label for="itemName">Item Name</label>
+    <input type="text" name="itemName"><br>
+    <label for="itemDescription">Item Description</label>
+    <input type="text" name="itemDescription"><br>
+    <label for="itemPrice">Item Price</label>
+    <input type="number" name="itemPrice"><br>
+    <label for="itemImage">Item Image</label>
+    <input type="file" name="itemImage"><br>
+    <label for="itemCategory">Item Category</label>
+    <select name="itemCategory">
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="itemStock">Item Stock</label>
+    <input type="number" name="itemStock"><br>
+    <button type="submit">Add Item</button>
+</form>
+{% endblock %}

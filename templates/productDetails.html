@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<a href="/shop">Back</a>
+{% include 'space.html' %}
+
+<table width="100%">
+    <tr>
+        <td>
+            <center><img src="/{{ product.imageSrc }}" height="300px" width="200px"></center>
+        </td>
+        <td>
+            <table width="100%">
+                <tr><center><h3>{{product.name}}</h3></center></tr>
+                <tr><center><p>Part of the: {{ product.category }} collection</p></center></tr>
+                <tr><center><p>{{ product.description }}</p></center></tr>
+                <tr><center><p>{{ product.price }} $</p></center></tr>
+                <tr><center><p>Hurry up! There are only {{ product.stock }} products left!</p></center></tr>
+                <tr><center><button><a href="/product/{{product.id}}/addToCart">Add To Cart</a></button></center></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

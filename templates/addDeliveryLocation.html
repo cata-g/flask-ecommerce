@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<form action="/create-location" method="post">
+    <label for="name">Location Name</label>
+    <input type="text" name="name" placeholder="Ex: Home, Work"><br>
+    <label for="city">City</label>
+    <input type="text" name="city"><br>
+    <label for="street">Street Name</label>
+    <input type="text" name="street"><br>
+    <label for="streetnr">Street Number</label>
+    <input type="number" name="streetnr"><br>
+    <p>If it is the case:</p>
+    <label for="flat">Flat</label>
+    <input type="text" name="flat"><br>
+    <label for="app">Apartament</label>
+    <input type="text" name="app"><br>
+    <label for="floor">Floor</label>
+    <input type="text" name="floor"><br>
+    <button type="submit">Add Location</button>
+</form>
+{% endblock %}

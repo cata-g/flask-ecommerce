@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<h1><b>Quick Actions</b></h1><br>
+<button><a href="/add-item">Add Item</a></button>
+<button><a href="/add-category">Add A New Category</a></button>
+
+<h1>Active Orders</h1>
+{% if activeOrdersList %}
+<table width="100%">
+    <tr>
+        <th><center>Order Id</center></th>
+        <th><center>Product Details</center></th>
+        <th><center>Delivery Location</center></th>
+        <th><center>Status</center></th>
+        <th><center>User Details</center></th>
+        <th><center>Change Status</center></th>
+    </tr>
+    {% for order in activeOrdersList %}
+    <tr>
+        <td><center>{{order.id}}</center></td>
+        <td><center>
+            <img src="/{{order.product.imageSrc}}" height="50px" width="25px">
+            {{order.product.name }} 
+            ({{order.product.price}}$)
+        </center></td>
+        <td><center>{{order.location.name}} ({{order.location.city}}, {{order.location.street}}, {{order.location.streetNr}})</center></td>
+        <td><center>{{order.status}}</center></td>
+        <td><center>{{order.user.name}} ({{order.user.id}})</center></td>
+        <td><center>
+            <form action="/markAsDelivered/{{order.id}}" method="POST">
+                <button type="submit">Mark as Delivered</button>
+            </form>
+        </center></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h5>No orders Yet!</h5>
+{% endif %}
+<h1>History</h1>
+{% if historyOrdersList %}
+<table width="100%">
+    <tr>
+        <th><center>Order Id</center></th>
+        <th><center>Product Details</center></th>
+        <th><center>Delivery Location</center></th>
+        <th><center>Status</center></th>
+        <th><center>User Details</center></th>
+    </tr>
+    {% for order in historyOrdersList %}
+    <tr>
+        <td><center>{{order.id}}</center></td>
+        <td><center>
+            <img src="/{{order.product.imageSrc}}" height="50px" width="25px">
+            {{order.product.name }} 
+            ({{order.product.price}}$)
+        </center></td>
+        {% if order.location.name %}
+            <td><center>{{order.location.name}} ({{order.location.city}}, {{order.location.street}}, {{order.location.streetNr}})</center></td>
+        {% else %}
+            <td><center>-</center></td>
+        {% endif %}
+        <td><center>{{order.status}}</center></td>
+        <td><center>{{order.user.name}} ({{order.user.id}})</center></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h5>No orders Yet!</h5>
+{% endif %}
+
+<h1>Categories</h1>
+{% if categories %}
+<table width="100%">
+    <tr>
+        <th><center>Name</center></th>
+        <th><center>Delete</center></th>
+    </tr>
+    {% for category in categories %}
+        <tr>
+            <td><center>{{category.id}}. {{category.name}}</center></td>
+            <td>
+                <center>
+                    <form action="/delete-category/{{category.id}}" method="get">
+                        <button type="submit">Delete Category</button>
+                    </form>
+                </center>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h5>No categories Yet!</h5>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+<table style="width: 100%;">
+    <tr>
+        <th><center>Product Image</center></th>
+        <th><center>Product Name</center></th>
+        <th><center>Description</center></th>
+        <th><center>Price</center></th>
+        <th><center>Actions</center></th>
+        {% if account['role'] == 'admin' %}
+        <th><center>Admin Actions</center></th>
+        {% endif %}
+    </tr>
+{% for product in productsList %}
+    <tr>
+        <td><center><img src="{{product.imageSrc}}" height="200px" width="200px"></center></td>
+        <td><center>{{ product.name }}</center></td>
+        <td><center>{{ product.description }}</center></td>
+        <td><center>{{ product.price }}$</center></td>
+        <td>
+            <center>
+                <button><a href="/product/{{product.id}}/addToCart">Add To Cart</a></button>
+                <button><a href="/product/{{product.id}}">View Details</a></button>
+            </center>
+        </td>
+        {% if account['role'] == 'admin' %}
+        <td>
+            <center>
+                <button><a href="/product/edit/{{product.id}}">Edit Product</a></button>
+                <button><a href="/product/remove/{{product.id}}">Remove Product</a></button>
+            </center>
+        </td>
+        {% endif %}
+    </tr>
+{% endfor %}
+</table>

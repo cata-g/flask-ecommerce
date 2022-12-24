@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<form action="/create-category" method="post">
+    <label for="categoryName">Category Name</label>
+    <input type="text" name="categoryName"><br>
+    <button type="submit">Add category</button>
+</form>
+{% endblock %}

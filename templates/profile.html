@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<h1>Active Orders</h1>
+{% if activeOrdersList %}
+<table style="width: 100%">
+    <tr>
+        <th><center>Order Id</center></th>
+        <th><center>Product Details</center></th>
+        <th><center>Delivery Location</center></th>
+        <th><center>Status</center></th>
+    </tr>
+    {% for order in activeOrdersList %}
+    <tr>
+        <td><center>{{order.id}}</center></td>
+        <td><center>
+            <img src="/{{order.product.imageSrc}}" height="50px" width="25px">
+            {{order.product.name }} 
+            ({{order.product.price}}$)
+        </center></td>
+        <td><center>{{order.location.name}} ({{order.location.city}}, {{order.location.street}}, {{order.location.streetNr}})</center></td>
+        <td><center>{{order.status}}</center></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h5>No orders Yet!</h5>
+{% endif %}
+<h1>History</h1>
+{% if historyOrdersList %}
+<table style="width: 100%">
+    <tr>
+        <th><center>Order Id</center></th>
+        <th><center>Product Details</center></th>
+        <th><center>Delivery Location</center></th>
+        <th><center>Status</center></th>
+    </tr>
+    {% for order in historyOrdersList %}
+    <tr>
+        <td><center>{{order.id}}</center></td>
+        <td><center>
+            <img src="/{{order.product.imageSrc}}" height="50px" width="25px">
+            {{order.product.name }} 
+            ({{order.product.price}}$)
+        </center></td>
+        <td><center>{{order.location.name}} ({{order.location.city}}, {{order.location.street}}, {{order.location.streetNr}})</center></td>
+        <td><center>{{order.status}}</center></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h5>No orders Yet!</h5>
+{% endif %}
+<h1>Add Delivery Locations</h1>
+<button><a href="/addDeliveryLocation">Add A New Delivery Location</a></button>
+{% if locationsList %}
+<table style="width: 100%;">
+    <tr>
+        <th><center>Loc Name</center></th>
+        <th><center>City</center></th>
+        <th><center>Street, Street Number</center></th>
+        <th><center>Flat, Floor, Apartment</center></th>
+        <th><center>Actions</center></th>
+    </tr>
+    {% for location in locationsList %}
+    <tr>
+        <td><center>{{location.id}} {{location.name}}</center></td>
+        <td><center>{{location.city}}</center></td>
+        <td><center>{{location.street}}, {{location.streetNr}}</center></td>
+        <td><center>{{location.flat}}, {{location.floor}}, {{location.apartament}}</center></td>
+        <td><center><a href="/location/delete/{{location.id}}">Delete</a></center></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

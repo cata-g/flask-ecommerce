@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'space.html' %}
+<table width="100%">
+    <tr>
+        <th><center>Log In</center></th>
+        <th><center>Create An Account</center></th>
+    </tr>
+    <tr>
+        <td>
+            <center>
+                <form action="/login" method="post">
+                    <label for="uname">Username</label><br>
+                    <input type="text" id="uname" name="uname"><br>
+                    <div><p style="color:red">{{usernameError}}</p></div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br>
+                    <div><p style="color:red">{{passwordError}}</p></div>
+                    <button type="submit">Log In</button>
+                </form> 
+            </center>
+        </td>
+        <td>
+            <center>
+                <form action="/register" method="post">
+                    <label for="name">Full Name</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <div><p style="color:red">{{regNameError}}</p></div>
+                    <label for="uname">Username</label><br>
+                    <input type="text" id="uname" name="uname"><br>
+                    <div><p style="color:red">{{regusernameError}}</p></div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br>
+                    <div><p style="color:red">{{regpasswordError}}</p></div>
+                    <label for="confirmPassword">Confirm Password:</label><br>
+                    <input type="password" id="confirmPassword" name="confirmPassword"><br>
+                    <div><p style="color:red">{{regconfirmpasswordError}}</p></div>
+                    <input type="submit" value="Create Account">
+                </form> 
+            </center>
+        </td>
+    </tr>
+</table>
+
+
+{% endblock %}
